@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Growth System for Local Businesses — Road2Resolve</title>
+    <meta name="description" content="Stay visible on Google, build trust, and capture more enquiries. One joined-up system for local service businesses. £299/month, no long contracts.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg:             #0f1117;
+            --bg-secondary:   #141824;
+            --bg-card:        #1a2035;
+            --border:         rgba(255, 255, 255, 0.07);
+            --border-hover:   rgba(255, 255, 255, 0.15);
+            --accent:         #6366f1;
+            --accent-hover:   #818cf8;
+            --accent-glow:    rgba(99, 102, 241, 0.3);
+            --accent-subtle:  rgba(99, 102, 241, 0.10);
+            --text:           #f0eeff;
+            --text-muted:     #8b8aaa;
+            --text-dim:       #525270;
+            --gold:           #f59e0b;
+            --gold-subtle:    rgba(245, 158, 11, 0.10);
+            --green:          #10b981;
+            --green-subtle:   rgba(16, 185, 129, 0.10);
+            --radius:         12px;
+            --radius-lg:      20px;
+            --max-width:      1100px;
+        }
+
+        html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+        body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.65; overflow-x: hidden; }
+        h1,h2,h3,h4 { font-family: 'Plus Jakarta Sans', sans-serif; line-height: 1.15; }
+        a { text-decoration: none; color: inherit; }
+        .container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+
+        /* UTILITIES */
+        .badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 100px; font-size: 13px; font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase; }
+        .badge-accent { background: var(--accent-subtle); color: var(--accent-hover); border: 1px solid rgba(99,102,241,0.2); }
+        .badge-gold { background: var(--gold-subtle); color: var(--gold); border: 1px solid rgba(245,158,11,0.2); }
+        .section-label { font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+        .section-title { font-size: clamp(28px, 3.5vw, 46px); font-weight: 800; line-height: 1.15; }
+        .section-subtitle { font-size: 17px; color: var(--text-muted); max-width: 580px; line-height: 1.7; }
+
+        /* BUTTONS */
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: var(--radius); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; font-weight: 700; cursor: pointer; transition: all 0.2s; border: none; }
+        .btn-primary { background: var(--accent); color: white; }
+        .btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); box-shadow: 0 8px 30px var(--accent-glow); }
+        .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border-hover); }
+        .btn-outline:hover { border-color: var(--accent); color: var(--accent-hover); background: var(--accent-subtle); }
+        .btn-lg { padding: 17px 34px; font-size: 16px; }
+        .btn-sm { padding: 10px 20px; font-size: 14px; }
+
+        /* ANIMATIONS */
+        .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.35; } }
+
+        /* ===================== NAV ===================== */
+        nav { position: fixed; top:0; left:0; right:0; z-index:100; padding: 18px 0; transition: background 0.3s, padding 0.3s, border-color 0.3s; border-bottom: 1px solid transparent; }
+        nav.scrolled { background: rgba(6,6,11,0.93); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 12px 0; border-bottom-color: var(--border); }
+        nav .container { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+        .nav-logo { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 19px; font-weight: 800; letter-spacing: -0.5px; white-space: nowrap; }
+        .nav-logo span { color: var(--accent); }
+        .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+        .nav-links a { font-size: 14px; font-weight: 500; color: var(--text-muted); transition: color 0.2s; white-space: nowrap; }
+        .nav-links a:hover, .nav-links a.active { color: var(--text); font-weight: 600; }
+        .nav-cta { display: flex; align-items: center; gap: 14px; }
+        .mobile-menu-btn { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+        .mobile-menu-btn span { width: 22px; height: 2px; background: var(--text); border-radius: 2px; }
+
+        /* ===================== HERO ===================== */
+        .hero { min-height: 90vh; display: flex; align-items: center; padding: 120px 0 80px; position: relative; overflow: hidden; text-align: center; }
+        .hero::before { content:''; position:absolute; inset:0; background-image: linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%); -webkit-mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%); }
+        .hero::after { content:''; position:absolute; top:10%; left:50%; transform:translateX(-50%); width:700px; height:500px; background: radial-gradient(ellipse, rgba(99,102,241,0.13) 0%, transparent 60%); pointer-events:none; }
+        .hero-content { position:relative; z-index:1; max-width:800px; margin:0 auto; }
+        .hero-eyebrow { display:inline-flex; align-items:center; gap:8px; margin-bottom:24px; }
+        .hero h1 { font-size: clamp(38px, 5.5vw, 68px); font-weight:900; letter-spacing:-2px; line-height:1.05; margin-bottom:22px; }
+        .hero h1 .highlight { background: linear-gradient(135deg, var(--accent) 0%, #a78bfa 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+        .hero p { font-size: clamp(16px, 2vw, 19px); color:var(--text-muted); max-width:560px; margin:0 auto 36px; line-height:1.7; }
+        .hero-ctas { display:flex; align-items:center; justify-content:center; gap:14px; flex-wrap:wrap; margin-bottom:48px; }
+        .hero-trust { display:flex; align-items:center; justify-content:center; gap:28px; flex-wrap:wrap; padding-top:28px; border-top:1px solid var(--border); }
+        .trust-item { display:flex; align-items:center; gap:8px; font-size:14px; color:var(--text-muted); font-weight:500; }
+        .trust-check { width:18px; height:18px; border-radius:50%; background:var(--green-subtle); border:1px solid rgba(16,185,129,0.3); display:flex; align-items:center; justify-content:center; font-size:10px; color:var(--green); flex-shrink:0; }
+
+        /* ===================== PROBLEM ===================== */
+        .problem { padding: 88px 0; background: var(--bg-secondary); }
+        .problem-header { text-align:center; margin-bottom:52px; }
+        .problem-grid { display:grid; grid-template-columns: repeat(2, 1fr); gap:18px; max-width: 900px; margin: 0 auto; }
+        .problem-card { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); padding:28px; display:flex; align-items:flex-start; gap:14px; transition: border-color 0.2s, transform 0.2s; }
+        .problem-card:hover { border-color: rgba(239,68,68,0.3); transform:translateY(-2px); }
+        .problem-icon { width:42px; height:42px; border-radius:10px; background:rgba(239,68,68,0.08); display:flex; align-items:center; justify-content:center; font-size:20px; flex-shrink:0; }
+        .problem-card h4 { font-size:15px; font-weight:700; margin-bottom:5px; }
+        .problem-card p { font-size:13px; color:var(--text-muted); line-height:1.6; }
+
+        /* ===================== WHAT'S INCLUDED ===================== */
+        .included { padding: 88px 0; }
+        .included-header { text-align:center; margin-bottom:56px; }
+        .included-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:20px; }
+        .included-card { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-lg); padding:32px; transition: border-color 0.2s, transform 0.2s; }
+        .included-card:hover { border-color:var(--accent); transform:translateY(-3px); }
+        .inc-icon { font-size:30px; margin-bottom:16px; }
+        .included-card h3 { font-size:18px; font-weight:800; margin-bottom:10px; }
+        .included-card p { font-size:14px; color:var(--text-muted); line-height:1.7; }
+
+        /* ===================== AFTER 30 DAYS ===================== */
+        .after-30 { padding: 88px 0; background: var(--bg-secondary); }
+        .after-30-header { text-align:center; margin-bottom:52px; }
+        .after-30-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:18px; max-width: 960px; margin: 0 auto; }
+        .outcome-card { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); padding:26px; border-left: 3px solid var(--accent); transition: transform 0.2s; }
+        .outcome-card:hover { transform:translateY(-2px); }
+        .outcome-card h4 { font-size:15px; font-weight:700; margin-bottom:8px; }
+        .outcome-card p { font-size:13px; color:var(--text-muted); line-height:1.6; }
+
+        /* ===================== HOW IT WORKS ===================== */
+        .how-it-works { padding: 88px 0; }
+        .how-header { text-align:center; margin-bottom:56px; }
+        .steps { display:grid; grid-template-columns: repeat(4, 1fr); gap:20px; position:relative; }
+        .steps::before { content:''; position:absolute; top:36px; left:calc(12.5% + 12px); right:calc(12.5% + 12px); height:1px; background:linear-gradient(90deg, var(--accent), rgba(99,102,241,0.2) 50%, var(--accent)); opacity:0.35; }
+        .step { text-align:center; }
+        .step-circle { width:52px; height:52px; border-radius:50%; background:var(--accent-subtle); border:2px solid var(--accent); display:flex; align-items:center; justify-content:center; margin:0 auto 20px; font-family:'Plus Jakarta Sans', sans-serif; font-size:18px; font-weight:800; color:var(--accent); position:relative; z-index:1; }
+        .step h4 { font-size:16px; font-weight:700; margin-bottom:8px; }
+        .step p { font-size:13px; color:var(--text-muted); line-height:1.65; }
+
+        /* ===================== WHO IT'S FOR ===================== */
+        .who { padding: 88px 0; background: var(--bg-secondary); }
+        .who-inner { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start; max-width:920px; margin:0 auto; }
+        .who-list { list-style:none; display:flex; flex-direction:column; gap:10px; }
+        .who-list li { display:flex; align-items:center; gap:12px; padding:14px 18px; background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); font-size:14px; font-weight:500; transition:border-color 0.2s; }
+        .who-list li:hover { border-color:var(--accent); }
+        .who-list li .icon { font-size:18px; }
+        .not-for { margin-top:0; padding:24px; background:rgba(239,68,68,0.04); border:1px solid rgba(239,68,68,0.15); border-radius:var(--radius); }
+        .not-for h4 { font-size:13px; font-weight:700; color:#ef4444; text-transform:uppercase; letter-spacing:0.07em; margin-bottom:12px; }
+        .not-for ul { list-style:none; display:flex; flex-direction:column; gap:8px; }
+        .not-for ul li { font-size:14px; color:var(--text-muted); display:flex; align-items:center; gap:8px; }
+        .not-for ul li::before { content:'✗'; color:#ef4444; font-weight:700; }
+
+        /* ===================== WHY US ===================== */
+        .why-us { padding: 88px 0; }
+        .why-header { text-align:center; margin-bottom:52px; }
+        .why-grid { display:grid; grid-template-columns: repeat(3, 1fr); gap:24px; max-width: 900px; margin:0 auto; }
+        .why-card { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-lg); padding:32px; text-align:center; transition:border-color 0.2s, transform 0.2s; }
+        .why-card:hover { border-color:var(--accent); transform:translateY(-3px); }
+        .why-card .why-icon { font-size:32px; margin-bottom:16px; }
+        .why-card h4 { font-size:16px; font-weight:800; margin-bottom:10px; }
+        .why-card p { font-size:14px; color:var(--text-muted); line-height:1.7; }
+
+        /* ===================== PRICING ===================== */
+        .pricing { padding: 88px 0; background: var(--bg-secondary); }
+        .pricing-header { text-align:center; margin-bottom:52px; }
+        .pricing-card { max-width:520px; margin:0 auto; background:var(--bg-card); border:2px solid var(--accent); border-radius:var(--radius-lg); padding:48px; background:linear-gradient(180deg, rgba(99,102,241,0.08) 0%, var(--bg-card) 60%); }
+        .pricing-type { font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-dim); margin-bottom:8px; }
+        .pricing-name { font-size:24px; font-weight:800; margin-bottom:6px; }
+        .pricing-tagline { font-size:15px; color:var(--text-muted); margin-bottom:28px; }
+        .pricing-price { margin-bottom:32px; }
+        .pricing-price .currency { font-size:22px; font-weight:700; vertical-align:super; color:var(--text-muted); }
+        .pricing-price .amount { font-family:'Plus Jakarta Sans', sans-serif; font-size:64px; font-weight:900; letter-spacing:-3px; }
+        .pricing-price .period { font-size:17px; color:var(--text-muted); margin-left:4px; }
+        .pricing-price .note { font-size:14px; color:var(--text-dim); margin-top:6px; }
+        .pricing-divider { height:1px; background:var(--border); margin:28px 0; }
+        .pricing-features { list-style:none; display:flex; flex-direction:column; gap:12px; margin-bottom:36px; }
+        .pricing-features li { display:flex; align-items:flex-start; gap:10px; font-size:14px; color:var(--text-muted); }
+        .pricing-features li::before { content:'✓'; color:var(--green); font-weight:700; flex-shrink:0; }
+        .no-contract { display:flex; align-items:center; justify-content:center; gap:8px; margin-top:18px; font-size:13px; color:var(--text-dim); font-weight:500; }
+        .no-contract::before { content:'🔓'; }
+
+        /* ===================== FAQ ===================== */
+        .faq { padding: 88px 0; }
+        .faq-header { text-align:center; margin-bottom:52px; }
+        .faq-list { max-width:700px; margin:0 auto; display:flex; flex-direction:column; gap:10px; }
+        .faq-item { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; }
+        .faq-question { width:100%; display:flex; align-items:center; justify-content:space-between; padding:20px 26px; background:none; border:none; cursor:pointer; text-align:left; color:var(--text); font-family:'Plus Jakarta Sans', sans-serif; font-size:15px; font-weight:700; gap:16px; transition:color 0.2s; }
+        .faq-question:hover { color:var(--accent); }
+        .faq-chevron { flex-shrink:0; width:18px; height:18px; transition:transform 0.3s; color:var(--text-dim); }
+        .faq-item.open .faq-chevron { transform:rotate(180deg); }
+        .faq-answer { max-height:0; overflow:hidden; transition:max-height 0.35s ease; }
+        .faq-item.open .faq-answer { max-height:300px; }
+        .faq-answer p { padding:0 26px 22px; font-size:15px; color:var(--text-muted); line-height:1.7; }
+
+        /* ===================== CONTACT FORM ===================== */
+        .contact { padding: 88px 0; background: var(--bg-secondary); position:relative; overflow:hidden; }
+        .contact::before { content:''; position:absolute; bottom:-100px; left:50%; transform:translateX(-50%); width:600px; height:600px; background:radial-gradient(ellipse, rgba(99,102,241,0.08) 0%, transparent 60%); pointer-events:none; }
+        .contact-header { text-align:center; margin-bottom:48px; }
+        .contact-form-wrapper { max-width:580px; margin:0 auto; position:relative; z-index:1; }
+        .form-card { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-lg); padding:44px; }
+        .form-group { margin-bottom:16px; }
+        .form-label { display:block; font-size:14px; font-weight:600; margin-bottom:7px; }
+        .form-label .req { color:#ef4444; margin-left:2px; }
+        .form-control { width:100%; background:var(--bg-secondary); border:1px solid var(--border); border-radius:8px; padding:12px 16px; font-family:'Inter', sans-serif; font-size:15px; color:var(--text); outline:none; transition:border-color 0.2s; }
+        .form-control:focus { border-color:var(--accent); }
+        .form-control::placeholder { color:var(--text-dim); }
+        select.form-control { cursor:pointer; appearance:none; -webkit-appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7280' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 14px center; padding-right:40px; }
+        select.form-control option { background:var(--bg-card); color:var(--text); }
+        .form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+        .form-submit { margin-top:24px; text-align:center; }
+        .form-note { font-size:13px; color:var(--text-dim); margin-top:12px; }
+        .form-result { display:none; padding:28px; border-radius:var(--radius); text-align:center; }
+        .form-result.success { background:var(--green-subtle); border:1px solid rgba(16,185,129,0.3); }
+        .form-result h4 { font-size:18px; font-weight:800; margin-bottom:8px; color:var(--green); }
+        .form-result p { font-size:14px; color:var(--text-muted); }
+
+        /* ===================== FOOTER ===================== */
+        footer { border-top:1px solid var(--border); padding:48px 0 28px; }
+        .footer-top { display:grid; grid-template-columns:2fr 1fr 1fr; gap:60px; margin-bottom:40px; }
+        .footer-brand p { font-size:14px; color:var(--text-muted); line-height:1.7; margin-top:14px; max-width:280px; }
+        .footer-col h5 { font-size:12px; font-weight:700; letter-spacing:0.09em; text-transform:uppercase; color:var(--text-dim); margin-bottom:18px; }
+        .footer-links { list-style:none; display:flex; flex-direction:column; gap:10px; }
+        .footer-links a { font-size:14px; color:var(--text-muted); transition:color 0.2s; }
+        .footer-links a:hover { color:var(--text); }
+        .footer-bottom { display:flex; align-items:center; justify-content:space-between; padding-top:28px; border-top:1px solid var(--border); font-size:13px; color:var(--text-dim); }
+
+        /* ===================== RESPONSIVE ===================== */
+        @media (max-width:768px) {
+            .nav-links { display:none; }
+            .mobile-menu-btn { display:flex; }
+            .nav-cta { display:none; }
+            .problem-grid { grid-template-columns:1fr; }
+            .steps { grid-template-columns:1fr 1fr; }
+            .steps::before { display:none; }
+            .who-inner { grid-template-columns:1fr; gap:32px; }
+            .why-grid { grid-template-columns:1fr; }
+            .footer-top { grid-template-columns:1fr; gap:36px; }
+            .footer-bottom { flex-direction:column; gap:10px; text-align:center; }
+        }
+        @media (max-width:480px) {
+            .hero { padding:100px 0 60px; }
+            .hero h1 { letter-spacing:-1px; }
+            .btn-lg { padding:16px 24px; font-size:15px; }
+            .steps { grid-template-columns:1fr; }
+            .form-row { grid-template-columns:1fr; }
+            .form-card { padding:24px 18px; }
+            .pricing-card { padding:32px 22px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+    <div class="container">
+        <a href="index.html" class="nav-logo">Road2Resolve<span>.</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html">Operations</a></li>
+            <li><a href="monday.html">Monday.com</a></li>
+            <li><a href="#included" class="active">What's Included</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#faq">FAQ</a></li>
+        </ul>
+        <div class="nav-cta">
+            <a href="#contact" class="btn btn-primary btn-sm">Check If This Fits</a>
+        </div>
+        <div class="mobile-menu-btn" id="mobileMenuBtn">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-eyebrow">
+                <span class="badge badge-accent">AI Growth System for Local Businesses</span>
+            </div>
+            <h1>
+                Get Found. Get Trusted.<br>
+                <span class="highlight">Get More Enquiries.</span>
+            </h1>
+            <p>
+                Not a bundle of random services. One joined-up system that keeps your business visible, credible, and easy to choose — without the cost or complexity of a full agency.
+            </p>
+            <div class="hero-ctas">
+                <a href="#contact" class="btn btn-primary btn-lg">
+                    Check If This Fits Your Business
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+                <a href="#included" class="btn btn-outline btn-lg">See What's Included</a>
+            </div>
+            <div class="hero-trust">
+                <div class="trust-item"><span class="trust-check">✓</span> £299/month, all-in</div>
+                <div class="trust-item"><span class="trust-check">✓</span> No long contracts</div>
+                <div class="trust-item"><span class="trust-check">✓</span> Cancel anytime</div>
+                <div class="trust-item"><span class="trust-check">✓</span> No pressure</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem" id="problem">
+    <div class="container">
+        <div class="problem-header fade-in">
+            <p class="section-label">Sound Familiar?</p>
+            <h2 class="section-title">Most local businesses face the same four problems</h2>
+        </div>
+        <div class="problem-grid">
+            <div class="problem-card fade-in">
+                <div class="problem-icon">😔</div>
+                <div>
+                    <h4>Your service is great. Your online presence is not.</h4>
+                    <p>You deliver excellent work but your website, Google listing, and profiles do not reflect that. First impressions are losing you business before you even get a chance.</p>
+                </div>
+            </div>
+            <div class="problem-card fade-in">
+                <div class="problem-icon">🔎</div>
+                <div>
+                    <h4>Competitors show up on Google. You do not.</h4>
+                    <p>When local customers search for what you offer, your competitors appear first. It is not because they are better — it is because they have been optimised and you have not.</p>
+                </div>
+            </div>
+            <div class="problem-card fade-in">
+                <div class="problem-icon">📭</div>
+                <div>
+                    <h4>Trust signals are being neglected.</h4>
+                    <p>Old reviews, an inactive LinkedIn, outdated listings, and a website that has not changed in years. Every one of these quietly costs you enquiries every single week.</p>
+                </div>
+            </div>
+            <div class="problem-card fade-in">
+                <div class="problem-icon">⏱️</div>
+                <div>
+                    <h4>Enquiries come in slowly. Responses go out slower.</h4>
+                    <p>When someone does reach out, the response takes too long. Customers move on. Speed of response is one of the biggest factors in whether you win or lose a new enquiry.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- WHAT'S INCLUDED -->
+<section class="included" id="included">
+    <div class="container">
+        <div class="included-header fade-in">
+            <p class="section-label">What's Included</p>
+            <h2 class="section-title">Everything works together.<br>That is the point.</h2>
+            <p class="section-subtitle" style="margin:16px auto 0;">Each part of the system feeds the next. Remove one and it weakens the rest.</p>
+        </div>
+        <div class="included-grid">
+            <div class="included-card fade-in">
+                <div class="inc-icon">🔍</div>
+                <h3>Google Visibility</h3>
+                <p>Stay visible on Google with ongoing updates and optimisation. We manage your Google Business Profile, keep your information accurate, and improve how you appear in local search results.</p>
+            </div>
+            <div class="included-card fade-in">
+                <div class="inc-icon">📍</div>
+                <h3>Local Presence Management</h3>
+                <p>Keep your business active and up-to-date wherever customers are looking. Directories, review platforms, maps, and listings — all consistent and current so nothing is quietly costing you enquiries.</p>
+            </div>
+            <div class="included-card fade-in">
+                <div class="inc-icon">💼</div>
+                <h3>LinkedIn Support</h3>
+                <p>Build trust and credibility through LinkedIn where professional decisions get made. We help you stay active and visible in a way that positions your business as the obvious choice.</p>
+            </div>
+            <div class="included-card fade-in">
+                <div class="inc-icon">🤖</div>
+                <h3>AI Enquiry Capture</h3>
+                <p>Capture and respond to enquiries faster with AI tools. An AI chatbot or smart lead form means no enquiry goes unanswered — even outside business hours. Respond in seconds, not days.</p>
+            </div>
+            <div class="included-card fade-in">
+                <div class="inc-icon">🌐</div>
+                <h3>Website Improvements</h3>
+                <p>Turn more visitors into enquiries with better website setup. We review and improve your calls-to-action, contact paths, and page structure so visitors know exactly what to do next.</p>
+            </div>
+            <div class="included-card fade-in">
+                <div class="inc-icon">📊</div>
+                <h3>Monthly Review</h3>
+                <p>Know what to improve next with a clear monthly review. Every month you get a plain-English report on what is working, what is not, and exactly where we are focusing next.</p>
+            </div>
+            <div class="included-card fade-in" style="grid-column: 1 / -1; max-width: 460px; margin: 0 auto; width: 100%;">
+                <div class="inc-icon">💬</div>
+                <h3>Direct Support</h3>
+                <p>Get direct support without a bloated agency process. One point of contact. You speak to the person doing the work — not an account manager reading notes from a screen.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- AFTER 30 DAYS -->
+<section class="after-30" id="after-30">
+    <div class="container">
+        <div class="after-30-header fade-in">
+            <p class="section-label">After 30 Days</p>
+            <h2 class="section-title">Here is what typically changes</h2>
+            <p class="section-subtitle" style="margin:16px auto 0;">These are the real improvements most clients notice in the first month.</p>
+        </div>
+        <div class="after-30-grid">
+            <div class="outcome-card fade-in">
+                <h4>Your Google presence looks professional</h4>
+                <p>Updated photos, correct information, regular posts, and a profile that actually reflects the quality of your service.</p>
+            </div>
+            <div class="outcome-card fade-in">
+                <h4>You show up where you were invisible before</h4>
+                <p>Local search improvements start to move the needle. More profile views, more calls, more direction requests.</p>
+            </div>
+            <div class="outcome-card fade-in">
+                <h4>Enquiries are captured automatically</h4>
+                <p>Your AI lead capture is live. No more losing enquiries because you were busy or it was outside business hours.</p>
+            </div>
+            <div class="outcome-card fade-in">
+                <h4>Your online presence feels consistent</h4>
+                <p>LinkedIn, directories, listings — all updated, all aligned. A coherent presence that builds trust without effort.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works" id="how-it-works">
+    <div class="container">
+        <div class="how-header fade-in">
+            <p class="section-label">How It Works</p>
+            <h2 class="section-title">Simple. No pressure.</h2>
+            <p class="section-subtitle" style="margin:16px auto 0;">We are straightforward about whether this is the right fit before any commitment is made.</p>
+        </div>
+        <div class="steps">
+            <div class="step fade-in">
+                <div class="step-circle">01</div>
+                <h4>We review your current setup</h4>
+                <p>A quick look at your Google profile, website, LinkedIn, and listings to understand where you are starting from.</p>
+            </div>
+            <div class="step fade-in">
+                <div class="step-circle">02</div>
+                <h4>We identify the gaps</h4>
+                <p>We pinpoint exactly what is costing you enquiries and what will make the biggest difference fastest.</p>
+            </div>
+            <div class="step fade-in">
+                <div class="step-circle">03</div>
+                <h4>We explain what we will improve</h4>
+                <p>You get a clear breakdown of what we plan to do, in plain English — no jargon, no vague promises.</p>
+            </div>
+            <div class="step fade-in">
+                <div class="step-circle">04</div>
+                <h4>You decide</h4>
+                <p>No pressure. If it makes sense, we get started. If it does not, we will tell you honestly and you walk away with useful insights regardless.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- WHO IT'S FOR -->
+<section class="who" id="who">
+    <div class="container">
+        <div style="text-align:center;margin-bottom:52px;" class="fade-in">
+            <p class="section-label">Who It's For</p>
+            <h2 class="section-title">This works well for you if…</h2>
+        </div>
+        <div class="who-inner">
+            <div class="fade-in">
+                <ul class="who-list">
+                    <li><span class="icon">🏥</span> You run a local service business — clinic, trade, consultancy, salon</li>
+                    <li><span class="icon">📉</span> Your enquiry volume is inconsistent or lower than it should be</li>
+                    <li><span class="icon">😤</span> You have been let down by agencies that over-promised and underdelivered</li>
+                    <li><span class="icon">⏰</span> You do not have time to manage your own online presence</li>
+                    <li><span class="icon">💡</span> You know something needs to change but do not know where to start</li>
+                    <li><span class="icon">💰</span> You want results without paying full agency prices</li>
+                </ul>
+            </div>
+            <div class="fade-in">
+                <div class="not-for">
+                    <h4>This is not the right fit if you are:</h4>
+                    <ul>
+                        <li>A large company that needs a full internal team</li>
+                        <li>Looking for paid advertising management (Google Ads, Meta Ads)</li>
+                        <li>Pre-launch with no existing customers or reviews</li>
+                        <li>Looking for a one-off project rather than ongoing support</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- WHY ROAD2RESOLVE -->
+<section class="why-us" id="why">
+    <div class="container">
+        <div class="why-header fade-in">
+            <p class="section-label">Why Road2Resolve</p>
+            <h2 class="section-title">We do things differently</h2>
+        </div>
+        <div class="why-grid">
+            <div class="why-card fade-in">
+                <div class="why-icon">🤝</div>
+                <h4>You talk to the people doing the work</h4>
+                <p>No account managers. No middlemen. The people you speak to are the people building and managing your system. Always.</p>
+            </div>
+            <div class="why-card fade-in">
+                <div class="why-icon">🔦</div>
+                <h4>We keep things understandable</h4>
+                <p>No jargon. No vanity metrics. Every report and recommendation is written in plain English so you always know what is happening and why.</p>
+            </div>
+            <div class="why-card fade-in">
+                <div class="why-icon">⚡</div>
+                <h4>Modern AI without the complexity</h4>
+                <p>We bring the benefits of AI tools to your business in a practical, no-fuss way. You get the advantage without needing to understand the technology.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+    <div class="container">
+        <div class="pricing-header fade-in">
+            <p class="section-label">Pricing</p>
+            <h2 class="section-title">One price. Everything included.</h2>
+            <p class="section-subtitle" style="margin:16px auto 0;">No add-ons. No surprise invoices. No long-term commitment.</p>
+        </div>
+        <div class="pricing-card fade-in">
+            <p class="pricing-type">Monthly Retainer</p>
+            <h3 class="pricing-name">The Enquiry System</h3>
+            <p class="pricing-tagline">The complete system to get found, trusted, and chosen.</p>
+            <div class="pricing-price">
+                <span class="currency">£</span><span class="amount">299</span><span class="period">/mo</span>
+                <div class="note">+ £299 one-time setup · Cancel anytime after month 3</div>
+            </div>
+            <div class="pricing-divider"></div>
+            <ul class="pricing-features">
+                <li>Google Business Profile management &amp; optimisation</li>
+                <li>Local directory listings — kept accurate and active</li>
+                <li>LinkedIn company &amp; personal profile support</li>
+                <li>AI chatbot or smart lead capture setup</li>
+                <li>Website conversion review &amp; improvements</li>
+                <li>Monthly performance report in plain English</li>
+                <li>Monthly strategy call (30 minutes)</li>
+                <li>Direct support — email or WhatsApp</li>
+            </ul>
+            <a href="#contact" class="btn btn-primary btn-lg" style="width:100%;justify-content:center;">
+                Check If This Fits Your Business →
+            </a>
+            <div class="no-contract">No long contracts. Cancel anytime after the first 3 months.</div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+    <div class="container">
+        <div class="faq-header fade-in">
+            <p class="section-label">FAQ</p>
+            <h2 class="section-title">Questions we get asked a lot</h2>
+        </div>
+        <div class="faq-list">
+            <div class="faq-item fade-in">
+                <button class="faq-question">
+                    What type of businesses does this work for?
+                    <svg class="faq-chevron" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="faq-answer"><p>It works best for local service businesses — clinics, trades, accountants, consultancies, salons, and similar. If you rely on local customers finding and trusting you, this system is designed for you.</p></div>
+            </div>
+            <div class="faq-item fade-in">
+                <button class="faq-question">
+                    Do I need a website for this to work?
+                    <svg class="faq-chevron" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="faq-answer"><p>A website helps but it is not essential to get started. We can improve your Google profile, LinkedIn, and lead capture independently. If you do have a website, we will review it as part of the setup.</p></div>
+            </div>
+            <div class="faq-item fade-in">
+                <button class="faq-question">
+                    What does the setup fee cover?
+                    <svg class="faq-chevron" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="faq-answer"><p>The £299 setup fee covers the initial review of your current presence, building out your AI lead capture, updating your profiles and listings, and getting everything connected before the ongoing work begins.</p></div>
+            </div>
+            <div class="faq-item fade-in">
+                <button class="faq-question">
+                    How long before I see results?
+                    <svg class="faq-chevron" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="faq-answer"><p>Most clients notice visible improvements to their Google profile and lead capture within the first 30 days. Local search visibility tends to build over 60–90 days. We will be clear with you about realistic timelines from the start.</p></div>
+            </div>
+            <div class="faq-item fade-in">
+                <button class="faq-question">
+                    Is there a long-term contract?
+                    <svg class="faq-chevron" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="faq-answer"><p>No. We ask for a 3-month minimum because meaningful results take time and we want to be fair to both sides. After that, you can cancel anytime with 30 days notice. No lengthy contracts, no penalties.</p></div>
+            </div>
+            <div class="faq-item fade-in">
+                <button class="faq-question">
+                    Does this include social media management?
+                    <svg class="faq-chevron" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="faq-answer"><p>We focus on LinkedIn as part of the system because it is the most effective for professional trust-building. We do not manage Instagram, Facebook, or TikTok as part of this package — that is a different service with a different model.</p></div>
+            </div>
+            <div class="faq-item fade-in">
+                <button class="faq-question">
+                    How is this different from hiring an SEO agency?
+                    <svg class="faq-chevron" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="faq-answer"><p>A traditional SEO agency focuses on one thing. This system covers your full online presence — Google, LinkedIn, lead capture, website improvements, and monthly reviews — all for less than most agencies charge for SEO alone. And you talk directly to the people doing the work.</p></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT FORM -->
+<section class="contact" id="contact">
+    <div class="container">
+        <div class="contact-header fade-in">
+            <p class="section-label">Get In Touch</p>
+            <h2 class="section-title">Check if this fits your business</h2>
+            <p class="section-subtitle" style="margin:16px auto 0;">Fill in a few details and we will come back to you within 48 hours with an honest answer. No pressure, no hard sell.</p>
+        </div>
+        <div class="contact-form-wrapper fade-in">
+            <div class="form-card">
+                <form id="enquiryForm" novalidate>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Your Name <span class="req">*</span></label>
+                            <input type="text" class="form-control" name="name" placeholder="Jane Smith" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Business Name <span class="req">*</span></label>
+                            <input type="text" class="form-control" name="business" placeholder="Smith Physio" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Email Address <span class="req">*</span></label>
+                            <input type="email" class="form-control" name="email" placeholder="jane@smithphysio.co.uk" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Phone Number</label>
+                            <input type="tel" class="form-control" name="phone" placeholder="+44 7700 000000">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">What are you most interested in? <span class="req">*</span></label>
+                        <select class="form-control" name="interest" required>
+                            <option value="" disabled selected>Select an option</option>
+                            <option>Getting found on Google</option>
+                            <option>Capturing more enquiries</option>
+                            <option>Improving my online presence overall</option>
+                            <option>LinkedIn and trust building</option>
+                            <option>All of the above</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Anything else we should know?</label>
+                        <textarea class="form-control" name="notes" placeholder="Your current situation, what you've tried, any specific goals..." rows="3" style="resize:vertical;min-height:80px;"></textarea>
+                    </div>
+                    <div class="form-submit">
+                        <button type="submit" class="btn btn-primary btn-lg" id="submitBtn">
+                            Send My Details
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </button>
+                        <p class="form-note">We reply within 48 hours. No commitment, no hard sell.</p>
+                    </div>
+                </form>
+                <div class="form-result success" id="formSuccess">
+                    <h4>Message Received ✓</h4>
+                    <p>Thanks — we will be in touch within 48 hours with an honest take on whether the Enquiry System is right for your business.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="container">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <a href="index.html" class="nav-logo" style="font-size:22px;">Road2Resolve<span>.</span></a>
+                <p>AI growth systems and operations consulting for ambitious service businesses.</p>
+                <p style="margin-top:10px;font-size:13px;">
+                    <a href="mailto:info@road2resolve.digital" style="color:var(--accent-hover);">info@road2resolve.digital</a>
+                </p>
+            </div>
+            <div class="footer-col">
+                <h5>Services</h5>
+                <ul class="footer-links">
+                    <li><a href="index.html">Operations Consulting</a></li>
+                    <li><a href="monday.html">Monday.com Consultancy</a></li>
+                    <li><a href="enquiry-system.html">Enquiry System</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>On This Page</h5>
+                <ul class="footer-links">
+                    <li><a href="#included">What's Included</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Road2Resolve. All rights reserved.</p>
+            <p>Built for service businesses serious about growth.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // NAV SCROLL
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 50); });
+
+    // FADE IN
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // MOBILE MENU
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.querySelector('.nav-links');
+    mobileMenuBtn.addEventListener('click', () => {
+        const isOpen = navLinks.style.display === 'flex';
+        navLinks.style.cssText = isOpen ? '' : 'display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(6,6,11,0.97);backdrop-filter:blur(20px);padding:20px 24px;gap:20px;border-bottom:1px solid rgba(255,255,255,0.07);z-index:99;';
+    });
+
+    // SMOOTH SCROLL
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+            const id = link.getAttribute('href').slice(1);
+            if (!id) return;
+            const target = document.getElementById(id);
+            if (target) {
+                e.preventDefault();
+                navLinks.style.cssText = '';
+                window.scrollTo({ top: target.getBoundingClientRect().top + window.pageYOffset - navbar.offsetHeight - 20, behavior: 'smooth' });
+            }
+        });
+    });
+
+    // FAQ
+    document.querySelectorAll('.faq-question').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const item = btn.parentElement;
+            const isOpen = item.classList.contains('open');
+            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+            if (!isOpen) item.classList.add('open');
+        });
+    });
+
+    // FORM
+    const form = document.getElementById('enquiryForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const successMsg = document.getElementById('formSuccess');
+    const MAKE_WEBHOOK_URL = 'https://formsubmit.co/ajax/info@road2resolve.digital';
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const data = new FormData(form);
+        let valid = true;
+        ['name','business','email','interest'].forEach(f => {
+            const el = form.querySelector(`[name="${f}"]`);
+            if (el && !el.value.trim()) { el.style.borderColor = '#ef4444'; valid = false; }
+        });
+        if (!valid) return;
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending…';
+        fetch(MAKE_WEBHOOK_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                source: 'Enquiry System Page',
+                name: data.get('name'),
+                business: data.get('business'),
+                email: data.get('email'),
+                phone: data.get('phone') || 'Not provided',
+                interest: data.get('interest'),
+                notes: data.get('notes') || 'None',
+                submitted_at: new Date().toLocaleString('en-GB')
+            })
+        }).finally(() => { form.style.display = 'none'; successMsg.style.display = 'block'; });
+    });
+
+    document.querySelectorAll('.form-control').forEach(el => {
+        el.addEventListener('input', () => { el.style.borderColor = ''; });
+    });
+</script>
+</body>
+</html>

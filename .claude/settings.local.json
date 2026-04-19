@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx --version)",
+      "mcp__Claude_Preview__preview_start",
+      "WebFetch(domain:road2resolve.digital)",
+      "Bash(xargs kill *)"
+    ]
+  }
+}

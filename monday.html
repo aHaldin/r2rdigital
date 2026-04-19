@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monday.com Consultancy — Road2Resolve</title>
+    <meta name="description" content="We build, customise, and train your team on Monday.com — so you actually use it and get real value from it.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg:             #0f1117;
+            --bg-secondary:   #141824;
+            --bg-card:        #1a2035;
+            --border:         rgba(255, 255, 255, 0.07);
+            --border-hover:   rgba(255, 255, 255, 0.15);
+            --accent:         #6366f1;
+            --accent-hover:   #818cf8;
+            --accent-glow:    rgba(99, 102, 241, 0.3);
+            --accent-subtle:  rgba(99, 102, 241, 0.10);
+            --text:           #f0eeff;
+            --text-muted:     #8b8aaa;
+            --text-dim:       #525270;
+            --gold:           #f59e0b;
+            --gold-subtle:    rgba(245, 158, 11, 0.10);
+            --green:          #10b981;
+            --green-subtle:   rgba(16, 185, 129, 0.10);
+            --radius:         12px;
+            --radius-lg:      20px;
+            --max-width:      1120px;
+        }
+
+        html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+        body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+        h1,h2,h3,h4,h5 { font-family: 'Plus Jakarta Sans', sans-serif; line-height: 1.2; }
+        a { text-decoration: none; color: inherit; }
+        .container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+
+        /* UTILITIES */
+        .badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 100px; font-size: 13px; font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase; }
+        .badge-accent { background: var(--accent-subtle); color: var(--accent-hover); border: 1px solid rgba(99,102,241,0.2); }
+        .badge-gold { background: var(--gold-subtle); color: var(--gold); border: 1px solid rgba(245,158,11,0.2); }
+        .section-label { font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+        .section-title { font-size: clamp(32px, 4vw, 52px); font-weight: 800; line-height: 1.1; }
+        .section-subtitle { font-size: 18px; color: var(--text-muted); max-width: 600px; line-height: 1.7; }
+
+        /* BUTTONS */
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: var(--radius); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; font-weight: 700; cursor: pointer; transition: all 0.2s; border: none; }
+        .btn-primary { background: var(--accent); color: white; }
+        .btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); box-shadow: 0 8px 30px var(--accent-glow); }
+        .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border-hover); }
+        .btn-outline:hover { border-color: var(--accent); color: var(--accent-hover); background: var(--accent-subtle); }
+        .btn-lg { padding: 18px 36px; font-size: 16px; }
+
+        /* ANIMATIONS */
+        .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.35; } }
+
+        /* NAV */
+        nav { position: fixed; top:0; left:0; right:0; z-index:100; padding: 20px 0; transition: background 0.3s, padding 0.3s, border-color 0.3s; border-bottom: 1px solid transparent; }
+        nav.scrolled { background: rgba(6,6,11,0.92); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 14px 0; border-bottom-color: var(--border); }
+        nav .container { display: flex; align-items: center; justify-content: space-between; }
+        .nav-logo { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 20px; font-weight: 800; letter-spacing: -0.5px; }
+        .nav-logo span { color: var(--accent); }
+        .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+        .nav-links a { font-size: 14px; font-weight: 500; color: var(--text-muted); transition: color 0.2s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--text); font-weight: 600; }
+        .nav-cta { display: flex; align-items: center; gap: 16px; }
+        .availability-dot { display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--green); }
+        .availability-dot::before { content:''; width:7px; height:7px; border-radius:50%; background:var(--green); animation: pulse 2s infinite; }
+        .mobile-menu-btn { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+        .mobile-menu-btn span { width: 22px; height: 2px; background: var(--text); border-radius: 2px; }
+
+        /* HERO */
+        .hero { min-height: 85vh; display: flex; align-items: center; padding: 120px 0 80px; position: relative; overflow: hidden; }
+        .hero::before { content:''; position:absolute; inset:0; background-image: linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%); -webkit-mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%); }
+        .hero::after { content:''; position:absolute; top:15%; left:50%; transform:translateX(-50%); width:800px; height:500px; background: radial-gradient(ellipse, rgba(99,102,241,0.12) 0%, transparent 60%); pointer-events:none; }
+        .hero-content { position:relative; z-index:1; text-align:center; max-width:860px; margin:0 auto; }
+        .hero-eyebrow { display:inline-flex; align-items:center; gap:8px; margin-bottom:28px; }
+        .hero h1 { font-size: clamp(40px, 5.5vw, 72px); font-weight:900; letter-spacing:-2px; line-height:1.05; margin-bottom:24px; }
+        .hero h1 .highlight { background: linear-gradient(135deg, var(--accent) 0%, #a78bfa 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+        .hero-subtitle { font-size: clamp(17px, 2vw, 20px); color:var(--text-muted); max-width:560px; margin:0 auto 40px; line-height:1.65; }
+        .hero-ctas { display:flex; align-items:center; justify-content:center; gap:16px; flex-wrap:wrap; margin-bottom:52px; }
+        .hero-trust { display:flex; align-items:center; justify-content:center; gap:28px; flex-wrap:wrap; padding-top:28px; border-top:1px solid var(--border); }
+        .hero-trust-item { display:flex; align-items:center; gap:8px; font-size:14px; color:var(--text-muted); font-weight:500; }
+        .hero-trust-item .check { width:18px; height:18px; border-radius:50%; background:var(--green-subtle); border:1px solid rgba(16,185,129,0.3); display:flex; align-items:center; justify-content:center; font-size:10px; color:var(--green); flex-shrink:0; }
+
+        /* PROBLEM */
+        .problem { padding: 90px 0; background: var(--bg-secondary); }
+        .problem-header { text-align:center; margin-bottom:56px; }
+        .pain-points { display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:18px; }
+        .pain-card { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); padding:26px; display:flex; align-items:flex-start; gap:14px; transition: border-color 0.2s, transform 0.2s; }
+        .pain-card:hover { border-color: rgba(239,68,68,0.3); transform:translateY(-2px); }
+        .pain-icon { width:40px; height:40px; border-radius:10px; background:rgba(239,68,68,0.08); display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; }
+        .pain-card h4 { font-size:15px; font-weight:700; margin-bottom:5px; }
+        .pain-card p { font-size:13px; color:var(--text-muted); line-height:1.6; }
+
+        /* SERVICES */
+        .services { padding: 90px 0; }
+        .services-header { text-align:center; margin-bottom:56px; }
+        .services-grid { display:grid; grid-template-columns: repeat(2, 1fr); gap:24px; }
+        .service-card { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-lg); padding:36px; transition: border-color 0.2s, transform 0.2s; }
+        .service-card:hover { border-color:var(--accent); transform:translateY(-3px); }
+        .service-number { font-family:'Plus Jakarta Sans', sans-serif; font-size:13px; font-weight:700; color:var(--accent); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:16px; }
+        .service-icon { font-size:32px; margin-bottom:16px; }
+        .service-card h3 { font-size:22px; font-weight:800; margin-bottom:12px; }
+        .service-card p { font-size:14px; color:var(--text-muted); line-height:1.7; margin-bottom:20px; }
+        .service-bullets { list-style:none; display:flex; flex-direction:column; gap:8px; }
+        .service-bullets li { font-size:13px; color:var(--text-muted); display:flex; align-items:flex-start; gap:8px; }
+        .service-bullets li::before { content:'→'; color:var(--accent); font-weight:700; flex-shrink:0; }
+
+        /* WHO IT'S FOR */
+        .for-who { padding:90px 0; background:var(--bg-secondary); }
+        .for-who-grid { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start; }
+        .client-list { list-style:none; display:flex; flex-direction:column; gap:12px; }
+        .client-list li { display:flex; align-items:center; gap:12px; padding:16px 20px; background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); font-size:15px; font-weight:500; transition:border-color 0.2s; }
+        .client-list li:hover { border-color:var(--accent); }
+        .client-list li .icon { font-size:20px; }
+        .not-for { margin-top:24px; padding:22px; background:rgba(239,68,68,0.04); border:1px solid rgba(239,68,68,0.15); border-radius:var(--radius); }
+        .not-for h4 { font-size:13px; font-weight:700; color:#ef4444; text-transform:uppercase; letter-spacing:0.07em; margin-bottom:12px; }
+        .not-for ul { list-style:none; display:flex; flex-direction:column; gap:8px; }
+        .not-for ul li { font-size:14px; color:var(--text-muted); display:flex; align-items:center; gap:8px; }
+        .not-for ul li::before { content:'✗'; color:#ef4444; font-weight:700; }
+
+        /* PLATFORMS */
+        .platforms-box { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-lg); padding:32px; }
+        .platforms-box h3 { font-size:18px; font-weight:800; margin-bottom:8px; }
+        .platforms-box p { font-size:14px; color:var(--text-muted); margin-bottom:24px; }
+        .platform-tags { display:flex; flex-wrap:wrap; gap:10px; }
+        .platform-tag { padding:8px 14px; background:var(--bg-secondary); border:1px solid var(--border); border-radius:8px; font-size:13px; font-weight:600; color:var(--text-muted); }
+        .migration-note { margin-top:24px; padding:16px; background:var(--accent-subtle); border:1px solid rgba(99,102,241,0.2); border-radius:10px; font-size:14px; color:var(--text-muted); }
+        .migration-note strong { color:var(--accent-hover); }
+
+        /* PRICING */
+        .pricing { padding:90px 0; }
+        .pricing-header { text-align:center; margin-bottom:56px; }
+        .pricing-cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:24px; max-width:860px; margin:0 auto; }
+        .pricing-card { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-lg); padding:36px; position:relative; overflow:hidden; }
+        .pricing-card.featured { border-color:var(--accent); background:linear-gradient(180deg, rgba(99,102,241,0.08) 0%, var(--bg-card) 60%); }
+        .pricing-type { font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-dim); margin-bottom:8px; }
+        .pricing-name { font-size:20px; font-weight:800; margin-bottom:16px; }
+        .pricing-price { margin-bottom:24px; }
+        .pricing-price .currency { font-size:20px; font-weight:700; vertical-align:super; color:var(--text-muted); }
+        .pricing-price .amount { font-family:'Plus Jakarta Sans', sans-serif; font-size:48px; font-weight:900; letter-spacing:-2px; }
+        .pricing-price .period { font-size:15px; color:var(--text-muted); margin-left:4px; }
+        .pricing-price .note { font-size:13px; color:var(--text-dim); margin-top:4px; }
+        .pricing-divider { height:1px; background:var(--border); margin:24px 0; }
+        .pricing-features { list-style:none; display:flex; flex-direction:column; gap:10px; margin-bottom:32px; }
+        .pricing-features li { display:flex; align-items:flex-start; gap:10px; font-size:14px; color:var(--text-muted); }
+        .pricing-features li::before { content:'✓'; color:var(--green); font-weight:700; flex-shrink:0; }
+
+        /* FORM */
+        .application { padding:90px 0; background:var(--bg-secondary); position:relative; overflow:hidden; }
+        .application::before { content:''; position:absolute; bottom:-100px; left:50%; transform:translateX(-50%); width:600px; height:600px; background:radial-gradient(ellipse, rgba(99,102,241,0.1) 0%, transparent 60%); pointer-events:none; }
+        .application-header { text-align:center; margin-bottom:52px; }
+        .application-form-wrapper { max-width:600px; margin:0 auto; position:relative; z-index:1; }
+        .form-card { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-lg); padding:44px; }
+        .form-section-title { font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent); margin-bottom:20px; margin-top:28px; }
+        .form-section-title:first-child { margin-top:0; }
+        .form-group { margin-bottom:18px; }
+        .form-label { display:block; font-size:14px; font-weight:600; margin-bottom:7px; }
+        .form-label .required { color:#ef4444; margin-left:2px; }
+        .form-control { width:100%; background:var(--bg-secondary); border:1px solid var(--border); border-radius:8px; padding:12px 16px; font-family:'Inter', sans-serif; font-size:15px; color:var(--text); outline:none; transition:border-color 0.2s; }
+        .form-control:focus { border-color:var(--accent); }
+        .form-control::placeholder { color:var(--text-dim); }
+        select.form-control { cursor:pointer; appearance:none; -webkit-appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7280' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 14px center; padding-right:40px; }
+        select.form-control option { background:var(--bg-card); color:var(--text); }
+        textarea.form-control { resize:vertical; min-height:90px; }
+        .form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+        .form-submit-area { margin-top:28px; text-align:center; }
+        .form-note { font-size:13px; color:var(--text-dim); margin-top:12px; }
+        .form-result { display:none; padding:28px; border-radius:var(--radius); text-align:center; }
+        .form-result.success { background:var(--green-subtle); border:1px solid rgba(16,185,129,0.3); }
+        .form-result h4 { font-size:18px; font-weight:800; margin-bottom:8px; color:var(--green); }
+        .form-result p { font-size:14px; color:var(--text-muted); }
+
+        /* FOOTER */
+        footer { border-top:1px solid var(--border); padding:48px 0 28px; }
+        .footer-top { display:grid; grid-template-columns:2fr 1fr 1fr; gap:60px; margin-bottom:40px; }
+        .footer-brand p { font-size:14px; color:var(--text-muted); line-height:1.7; margin-top:14px; max-width:280px; }
+        .footer-col h5 { font-size:12px; font-weight:700; letter-spacing:0.09em; text-transform:uppercase; color:var(--text-dim); margin-bottom:18px; }
+        .footer-links { list-style:none; display:flex; flex-direction:column; gap:10px; }
+        .footer-links a { font-size:14px; color:var(--text-muted); transition:color 0.2s; }
+        .footer-links a:hover { color:var(--text); }
+        .footer-bottom { display:flex; align-items:center; justify-content:space-between; padding-top:28px; border-top:1px solid var(--border); font-size:13px; color:var(--text-dim); }
+
+        /* RESPONSIVE */
+        @media (max-width:768px) {
+            .nav-links { display:none; }
+            .mobile-menu-btn { display:flex; }
+            .nav-cta { display:none; }
+            .services-grid { grid-template-columns:1fr; }
+            .for-who-grid { grid-template-columns:1fr; gap:36px; }
+            .form-row { grid-template-columns:1fr; }
+            .footer-top { grid-template-columns:1fr; gap:36px; }
+            .footer-bottom { flex-direction:column; gap:10px; text-align:center; }
+        }
+        @media (max-width:480px) {
+            .hero { padding:100px 0 60px; }
+            .btn-lg { padding:16px 24px; font-size:15px; }
+            .form-card { padding:24px 18px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+    <div class="container">
+        <a href="index.html" class="nav-logo">Road2Resolve<span>.</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html">Operations</a></li>
+            <li><a href="monday.html" class="active">Monday.com</a></li>
+            <li><a href="enquiry-system.html">Enquiry System</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+        </ul>
+        <div class="nav-cta">
+            <span class="availability-dot">Taking new clients</span>
+            <a href="#apply" class="btn btn-primary">Get Started</a>
+        </div>
+        <div class="mobile-menu-btn" id="mobileMenuBtn">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-eyebrow">
+                <span class="badge badge-accent">Monday.com Consultancy</span>
+            </div>
+            <h1>
+                Monday.com<br>
+                <span class="highlight">Built Right. Used Daily.</span>
+            </h1>
+            <p class="hero-subtitle">
+                Stop wasting your Monday.com subscription. We design it around how your business actually works, build the automations, and train your team so they actually use it.
+            </p>
+            <div class="hero-ctas">
+                <a href="#apply" class="btn btn-primary btn-lg">
+                    Book Your Audit Call — £250
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+                <a href="#services" class="btn btn-outline btn-lg">See What We Do</a>
+            </div>
+            <div class="hero-trust">
+                <div class="hero-trust-item"><span class="check">✓</span> Monday.com specialists</div>
+                <div class="hero-trust-item"><span class="check">✓</span> Audit call — £250</div>
+                <div class="hero-trust-item"><span class="check">✓</span> 90-min deep dive + roadmap</div>
+                <div class="hero-trust-item"><span class="check">✓</span> No-obligation quote included</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem" id="problem">
+    <div class="container">
+        <div class="problem-header fade-in">
+            <p class="section-label">The Problem</p>
+            <h2 class="section-title">Why Most Monday.com Setups Fail</h2>
+            <p class="section-subtitle" style="margin:16px auto 0;">Most businesses buy Monday.com with the best intentions — and then barely use it six months later.</p>
+        </div>
+        <div class="pain-points">
+            <div class="pain-card fade-in">
+                <div class="pain-icon">🎲</div>
+                <div>
+                    <h4>Set up by the wrong person</h4>
+                    <p>Someone built it without understanding your workflows. It looks busy but doesn't reflect how the team actually works.</p>
+                </div>
+            </div>
+            <div class="pain-card fade-in">
+                <div class="pain-icon">🔕</div>
+                <div>
+                    <h4>The team ignores it</h4>
+                    <p>No buy-in, no training, no structure. People default back to email threads, WhatsApp, and spreadsheets.</p>
+                </div>
+            </div>
+            <div class="pain-card fade-in">
+                <div class="pain-icon">⚙️</div>
+                <div>
+                    <h4>No automations</h4>
+                    <p>Still doing everything manually. Status updates, notifications, task creation — all done by hand when Monday.com could do it automatically.</p>
+                </div>
+            </div>
+            <div class="pain-card fade-in">
+                <div class="pain-icon">🗂️</div>
+                <div>
+                    <h4>Just a digital to-do list</h4>
+                    <p>No CRM, no client management, no reporting. You paid for a powerful platform and got a glorified checklist.</p>
+                </div>
+            </div>
+            <div class="pain-card fade-in">
+                <div class="pain-icon">💸</div>
+                <div>
+                    <h4>Paying for seats nobody uses</h4>
+                    <p>You're renewing the subscription every year out of guilt — hoping someone will eventually get value from it.</p>
+                </div>
+            </div>
+            <div class="pain-card fade-in">
+                <div class="pain-icon">🔌</div>
+                <div>
+                    <h4>Disconnected from your other tools</h4>
+                    <p>Monday.com lives in isolation. It's not connected to your email, CRM, invoicing, or communication tools.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+    <div class="container">
+        <div class="services-header fade-in">
+            <p class="section-label">What We Do</p>
+            <h2 class="section-title">Four Things. Done Properly.</h2>
+            <p class="section-subtitle" style="margin:16px auto 0;">We cover everything from your initial setup to team adoption and ongoing support.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card fade-in">
+                <div class="service-number">01 — Audit</div>
+                <div class="service-icon">🔍</div>
+                <h3>Monday.com Audit</h3>
+                <p>If you already have a Monday.com account, we start by reviewing what you have. No assumptions — just an honest look at what's working, what isn't, and what needs to change.</p>
+                <ul class="service-bullets">
+                    <li>Full board and workspace review</li>
+                    <li>Automation and integration check</li>
+                    <li>Team usage analysis</li>
+                    <li>Written fix-it report with priorities</li>
+                    <li>Free for new clients</li>
+                </ul>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-number">02 — Build</div>
+                <div class="service-icon">🏗️</div>
+                <h3>Custom Board Build</h3>
+                <p>We design and build your Monday.com workspace from the ground up — structured around your actual business, not a generic template. Project management, CRM, client delivery, hiring — all in one place.</p>
+                <ul class="service-bullets">
+                    <li>Custom board architecture</li>
+                    <li>CRM and pipeline setup</li>
+                    <li>Client and project dashboards</li>
+                    <li>Column logic and status flows</li>
+                    <li>Data migration from existing tools</li>
+                </ul>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-number">03 — Automate</div>
+                <div class="service-icon">⚡</div>
+                <h3>Automation &amp; Integrations</h3>
+                <p>Monday.com's automation engine is powerful — but most businesses never use it. We build automations that cut out manual work and connect Monday.com to the tools you already use.</p>
+                <ul class="service-bullets">
+                    <li>Native Monday.com automations</li>
+                    <li>Zapier and Make integrations</li>
+                    <li>Email, Slack, and calendar connections</li>
+                    <li>Client onboarding automations</li>
+                    <li>Notification and reminder flows</li>
+                </ul>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-number">04 — Train</div>
+                <div class="service-icon">🎓</div>
+                <h3>Team Training &amp; Adoption</h3>
+                <p>The best setup in the world is useless if your team doesn't use it. We run live training sessions, record Loom walkthroughs, and stay available for the first 30 days to make sure adoption actually sticks.</p>
+                <ul class="service-bullets">
+                    <li>Live team training session</li>
+                    <li>Loom video guides for each board</li>
+                    <li>Written SOPs and quick-reference guides</li>
+                    <li>30-day post-launch support</li>
+                    <li>Manager admin training</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- WHO IT'S FOR -->
+<section class="for-who" id="for-who">
+    <div class="container">
+        <div class="for-who-grid">
+            <div class="fade-in">
+                <p class="section-label">Who It's For</p>
+                <h2 class="section-title">Right for You If…</h2>
+                <p class="section-subtitle" style="margin:20px 0 28px;">We work with businesses at any stage of their Monday.com journey.</p>
+                <ul class="client-list">
+                    <li><span class="icon">😤</span> You have Monday.com but your team doesn't really use it</li>
+                    <li><span class="icon">🆕</span> You're setting up Monday.com for the first time and want it done right</li>
+                    <li><span class="icon">🔄</span> You're migrating from Asana, ClickUp, Notion, or Trello</li>
+                    <li><span class="icon">📈</span> You're scaling and need your project management to keep up</li>
+                    <li><span class="icon">🤝</span> You want automations but don't know where to start</li>
+                </ul>
+                <div class="not-for">
+                    <h4>Not the right fit if you are:</h4>
+                    <ul>
+                        <li>Happy with your current Monday.com setup</li>
+                        <li>Looking for free DIY templates only</li>
+                        <li>A solo operator with no team to manage</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="fade-in">
+                <div class="platforms-box">
+                    <h3>We migrate from any tool</h3>
+                    <p>Already using something else? We handle the full migration — data, structure, and team transition.</p>
+                    <div class="platform-tags">
+                        <span class="platform-tag">Asana</span>
+                        <span class="platform-tag">ClickUp</span>
+                        <span class="platform-tag">Notion</span>
+                        <span class="platform-tag">Trello</span>
+                        <span class="platform-tag">Basecamp</span>
+                        <span class="platform-tag">Jira</span>
+                        <span class="platform-tag">Spreadsheets</span>
+                        <span class="platform-tag">Post-it Notes 😅</span>
+                    </div>
+                    <div class="migration-note">
+                        <strong>Full migration included</strong> in all build packages. We move your existing data, rebuild your workflows in Monday.com, and train your team on the new structure.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+    <div class="container">
+        <div class="pricing-header fade-in">
+            <p class="section-label">Pricing</p>
+            <h2 class="section-title">Start with the Audit Call.</h2>
+            <p class="section-subtitle" style="margin:16px auto 0;">Every project is different. So before we quote anything, we get on a call, look at your setup properly, and give you a clear plan — then you decide.</p>
+        </div>
+        <div style="max-width:640px;margin:0 auto;">
+            <div class="pricing-card featured fade-in">
+                <p class="pricing-type">First Step</p>
+                <h3 class="pricing-name">Monday.com Audit Call</h3>
+                <p style="font-size:15px;color:var(--text-muted);margin-bottom:28px;">A 90-minute working session where we review your current setup, give you honest advice, and hand you a clear roadmap — including a fixed quote for any work you want us to do.</p>
+                <div class="pricing-price">
+                    <span class="currency">£</span><span class="amount">250</span>
+                    <div class="note">One-time · No commitment beyond the call</div>
+                </div>
+                <div class="pricing-divider"></div>
+                <ul class="pricing-features">
+                    <li>90-minute deep-dive into your Monday.com setup</li>
+                    <li>Honest assessment of what's working and what isn't</li>
+                    <li>Practical advice you can act on immediately</li>
+                    <li>Written roadmap of recommended improvements</li>
+                    <li>Fixed quote for any build or support work</li>
+                    <li>No obligation to proceed further</li>
+                </ul>
+                <a href="#apply" class="btn btn-primary btn-lg" style="width:100%;justify-content:center;">Book Your Audit Call →</a>
+                <p style="text-align:center;font-size:13px;color:var(--text-dim);margin-top:16px;">Build and support pricing is quoted per project after the audit. Every scope is different — we price it fairly and clearly before any work starts.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- APPLY FORM -->
+<section class="application" id="apply">
+    <div class="container">
+        <div class="application-header fade-in">
+            <p class="section-label">Get Started</p>
+            <h2 class="section-title">Book Your Free Monday.com Audit</h2>
+            <p class="section-subtitle" style="margin:16px auto 0;">Tell us a bit about your setup and what you need. We'll come back to you within 48 hours.</p>
+        </div>
+        <div class="application-form-wrapper fade-in">
+            <div class="form-card">
+                <form id="mondayForm" novalidate>
+
+                    <p class="form-section-title">About You</p>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Your Name <span class="required">*</span></label>
+                            <input type="text" class="form-control" name="name" placeholder="Jane Smith" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Business Name <span class="required">*</span></label>
+                            <input type="text" class="form-control" name="business" placeholder="Acme Agency" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Email Address <span class="required">*</span></label>
+                            <input type="email" class="form-control" name="email" placeholder="jane@acme.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Team Size</label>
+                            <select class="form-control" name="team_size">
+                                <option value="" disabled selected>Select size</option>
+                                <option>Just me</option>
+                                <option>2–5 people</option>
+                                <option>6–15 people</option>
+                                <option>16–30 people</option>
+                                <option>30+ people</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <p class="form-section-title">Your Monday.com Situation</p>
+                    <div class="form-group">
+                        <label class="form-label">Where are you with Monday.com right now? <span class="required">*</span></label>
+                        <select class="form-control" name="monday_status" required>
+                            <option value="" disabled selected>Select your situation</option>
+                            <option>We have it but barely use it</option>
+                            <option>We use it but it's a mess</option>
+                            <option>We're setting it up for the first time</option>
+                            <option>We're migrating from another tool</option>
+                            <option>We want automations added to an existing setup</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">What's the main thing you want fixed or built? <span class="required">*</span></label>
+                        <textarea class="form-control" name="main_goal" placeholder="E.g. we need a proper CRM pipeline, our team doesn't follow the boards, we want client onboarding automated..." rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">What tools do you currently use alongside Monday.com?</label>
+                        <input type="text" class="form-control" name="other_tools" placeholder="E.g. Slack, Gmail, Xero, HubSpot, Zapier...">
+                    </div>
+
+                    <div class="form-submit-area">
+                        <button type="submit" class="btn btn-primary btn-lg" id="mondaySubmitBtn">
+                            Book Free Audit
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </button>
+                        <p class="form-note">Free, no commitment. We'll respond within 48 hours.</p>
+                    </div>
+                </form>
+                <div class="form-result success" id="mondaySuccess">
+                    <h4>Booked ✓</h4>
+                    <p>We've received your details and will be in touch within 48 hours to arrange a time for your Monday.com audit call.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="container">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <a href="index.html" class="nav-logo" style="font-size:22px;">Road2Resolve<span>.</span></a>
+                <p>Premium operations consulting and Monday.com specialists for ambitious service businesses.</p>
+            </div>
+            <div class="footer-col">
+                <h5>Services</h5>
+                <ul class="footer-links">
+                    <li><a href="index.html">Operations Consulting</a></li>
+                    <li><a href="monday.html">Monday.com Consultancy</a></li>
+                    <li><a href="enquiry-system.html">Enquiry System</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Get In Touch</h5>
+                <ul class="footer-links">
+                    <li><a href="mailto:info@road2resolve.digital">info@road2resolve.digital</a></li>
+                    <li><a href="#apply">Book a Call</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Road2Resolve. All rights reserved.</p>
+            <p>Built for service businesses serious about scale.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // NAV SCROLL
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 50); });
+
+    // FADE IN
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // MOBILE MENU
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.querySelector('.nav-links');
+    mobileMenuBtn.addEventListener('click', () => {
+        const isOpen = navLinks.style.display === 'flex';
+        navLinks.style.cssText = isOpen ? '' : 'display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(6,6,11,0.97);backdrop-filter:blur(20px);padding:20px 24px;gap:20px;border-bottom:1px solid rgba(255,255,255,0.07);z-index:99;';
+    });
+
+    // SMOOTH SCROLL
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+            const id = link.getAttribute('href').slice(1);
+            if (!id) return;
+            const target = document.getElementById(id);
+            if (target) {
+                e.preventDefault();
+                navLinks.style.cssText = '';
+                window.scrollTo({ top: target.getBoundingClientRect().top + window.pageYOffset - navbar.offsetHeight - 20, behavior: 'smooth' });
+            }
+        });
+    });
+
+    // FORM
+    const form = document.getElementById('mondayForm');
+    const submitBtn = document.getElementById('mondaySubmitBtn');
+    const successMsg = document.getElementById('mondaySuccess');
+    const MAKE_WEBHOOK_URL = 'https://formsubmit.co/ajax/info@road2resolve.digital';
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const data = new FormData(form);
+        let valid = true;
+        ['name','business','email','monday_status','main_goal'].forEach(f => {
+            const el = form.querySelector(`[name="${f}"]`);
+            if (el && !el.value.trim()) { el.style.borderColor = '#ef4444'; valid = false; }
+        });
+        if (!valid) return;
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending…';
+
+        const payload = {
+            source: 'Monday.com Consultancy Page',
+            name: data.get('name'),
+            business: data.get('business'),
+            email: data.get('email'),
+            team_size: data.get('team_size') || 'Not specified',
+            monday_status: data.get('monday_status'),
+            main_goal: data.get('main_goal'),
+            other_tools: data.get('other_tools') || 'Not specified',
+            submitted_at: new Date().toLocaleString('en-GB')
+        };
+
+        fetch(MAKE_WEBHOOK_URL, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) })
+        .finally(() => { form.style.display = 'none'; successMsg.style.display = 'block'; });
+    });
+
+    document.querySelectorAll('.form-control').forEach(el => {
+        el.addEventListener('input', () => { el.style.borderColor = ''; });
+    });
+</script>
+</body>
+</html>
