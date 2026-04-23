@@ -20,6 +20,7 @@ export default function Navbar() {
     { label: 'Home', to: '/' },
     { label: 'Operations', to: '/operations' },
     { label: 'Digital Solutions', to: '/digital-solutions' },
+    { label: 'Contact', to: '/contact' },
   ]
 
   return (
@@ -60,10 +61,10 @@ export default function Navbar() {
           {/* CTA */}
           <div className="hidden md:block">
             <Link
-              to="/operations"
+              to="/contact"
               className="btn-gradient inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-white text-sm font-semibold"
             >
-              Book a Call
+              Contact Us
               <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
                 <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
@@ -107,10 +108,10 @@ export default function Navbar() {
           ))}
           <div className="pt-2">
             <Link
-              to="/operations"
+              to="/contact"
               className="btn-gradient block text-center px-4 py-3 rounded-xl text-white text-sm font-semibold"
             >
-              Book a Call
+              Contact Us
             </Link>
           </div>
         </div>

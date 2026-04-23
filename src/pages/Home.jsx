@@ -318,14 +318,14 @@ export default function Home() {
                   to="/operations"
                   className="btn-gradient w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-white font-semibold"
                 >
-                  Apply for Operations Consulting
+                  Operations Consulting
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                 </Link>
                 <Link
                   to="/digital-solutions"
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full border border-white/15 text-white font-semibold hover:bg-white/5 transition-colors"
                 >
-                  Explore Digital Solutions
+                  Digital Solutions
                 </Link>
               </div>
             </div>
