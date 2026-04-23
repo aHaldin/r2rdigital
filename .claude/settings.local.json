@@ -4,7 +4,13 @@
       "Bash(npx --version)",
       "mcp__Claude_Preview__preview_start",
       "WebFetch(domain:road2resolve.digital)",
-      "Bash(xargs kill *)"
+      "Bash(xargs kill *)",
+      "Bash(npm --version)",
+      "Bash(mkdir -p \"/Users/andrehaldin/Road2Resolve\")",
+      "Read(//Users/andrehaldin/Road2Resolve/**)",
+      "Bash(npm create *)",
+      "Bash(npm install *)",
+      "Bash(npm run *)"
     ]
   }
 }
