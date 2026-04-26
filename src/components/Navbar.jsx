@@ -20,7 +20,7 @@ export default function Navbar() {
     { label: 'Home', to: '/' },
     { label: 'Operations', to: '/operations' },
     { label: 'Digital Solutions', to: '/digital-solutions' },
-    { label: 'Contact', to: '/contact' },
+    { label: 'Privacy Notice', to: '/privacy' },
   ]
 
   return (

@@ -27,12 +27,12 @@ const goodfit = [
 ]
 
 const faqs = [
-  { q: 'What happens after the call?', a: 'You get a written roadmap and a clear quote for any follow-on work. There is zero obligation to continue — many clients find the roadmap alone extremely valuable and act on it themselves.' },
+  { q: 'What happens after the call?', a: 'You get a written roadmap and a clear quote for any follow-on work. There is zero obligation to continue.' },
   { q: 'Is this just a sales call?', a: 'No. This is a genuine working session. We review your actual setup, give you real advice, and hand you something useful before you spend another penny.' },
   { q: 'What if I want you to implement the roadmap?', a: 'We will give you a clear fixed price for any implementation work as part of the roadmap. The scope and cost depends on what we find — which is exactly why we audit first before quoting.' },
   { q: 'How do I prepare?', a: 'Nothing formal required. Just be ready to walk us through how your business operates day-to-day — your tools, your team, your key processes, and where things currently break down.' },
-  { q: 'Who is this for?', a: 'Service businesses doing £8k/month or more who feel operationally stretched. Agencies, clinics, consultancies, studios — any business where people are the core product and operations need to scale with them.' },
-  { q: 'Do you only work with businesses locally?', a: 'No. We work remotely with businesses across the UK. The audit call is conducted via video — everything we need can be shared on screen.' },
+  { q: 'Who is this for?', a: 'Any business that is growing but feels like operations are holding it back. If you have a good team but things are still falling through the cracks, this call is built for you.' },
+  { q: 'Do you only work with businesses locally?', a: 'No. We work remotely with businesses across the UK. The discovery call is conducted via video — everything we need can be shared on screen.' },
 ]
 
 function FaqItem({ q, a }) {
@@ -71,7 +71,7 @@ export default function Operations() {
       await fetch('https://formsubmit.co/ajax/info@road2resolve.digital', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ ...body, _subject: 'New Operations Audit Call Booking' }),
+        body: JSON.stringify({ ...body, _subject: 'New Operations Discovery Call Booking' }),
       })
       setSent(true)
     } catch {
@@ -93,22 +93,22 @@ export default function Operations() {
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="fade-in-up inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-xs text-slate-400 font-medium mb-8">
             <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-            Audit calls available now
+            Discovery calls available now
           </div>
           <h1 className="fade-in-up delay-100 text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white leading-[1.05] mb-6">
-            Your business doesn't
+            Another hire
             <br />
-            need more leads —
+            won't fix it.
             <br />
-            <span className="gradient-text">it needs better systems.</span>
+            <span className="gradient-text">Better foundations will.</span>
           </h1>
           <p className="fade-in-up delay-200 text-xl text-slate-400 leading-relaxed max-w-2xl mx-auto mb-10">
-            Start with a 90-minute audit call. We review your entire operation, build you a clear roadmap, and give you a transparent plan to fix it — with no obligation to go further.
+            Start with a 90-minute discovery call. We review your entire operation, build you a clear roadmap, and give you a transparent plan to fix it — with no obligation to go further.
           </p>
           <div className="fade-in-up delay-300 flex flex-col sm:flex-row items-center justify-center gap-4">
             <a href="#book"
               className="btn-gradient w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-white font-semibold text-base">
-              Book the Audit Call — £250
+              Book the Discovery Call — £250
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </a>
             <a href="#what-you-get"
@@ -123,6 +123,36 @@ export default function Operations() {
                 {item}
               </span>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CONTEXT */}
+      <section className="py-24 bg-[#0d0d1a]">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="fade-in-up">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 mb-4">The Real Problem</p>
+              <h2 className="text-4xl sm:text-5xl font-black text-white leading-tight mb-6">
+                Your people are good.
+                <span className="gradient-text block">Your systems aren't keeping up.</span>
+              </h2>
+              <p className="text-lg text-slate-400 leading-relaxed">
+                As businesses grow, great people get pulled into daily delivery, client demands, and constant firefighting — leaving no time to build the structure the next stage requires.
+              </p>
+            </div>
+            <div className="fade-in-up space-y-4">
+              {[
+                { label: 'The bottleneck', text: 'Work is piling up because processes aren\'t built to handle the volume.' },
+                { label: 'The cost', text: 'Hiring more people adds salary without fixing the underlying system.' },
+                { label: 'The fix', text: 'We build the foundations — operations, processes, and data systems — so your team can actually do their best work.' },
+              ].map(({ label, text }) => (
+                <div key={label} className="card-dark rounded-2xl p-6 border border-white/8">
+                  <p className="text-xs font-semibold uppercase tracking-widest mb-2 gradient-text">{label}</p>
+                  <p className="text-slate-300 leading-relaxed">{text}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -179,7 +209,7 @@ export default function Operations() {
               <div className="rounded-2xl p-px"
                 style={{ background: 'linear-gradient(135deg, #8A2BE2, #FF2D95)' }}>
                 <div className="rounded-2xl bg-[#12121f] p-8">
-                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 mb-2">The Audit Call</p>
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 mb-2">The Discovery Call</p>
                   <h3 className="text-3xl font-black text-white mb-1">
                     £250
                   </h3>
@@ -194,7 +224,7 @@ export default function Operations() {
                   </ul>
                   <a href="#book"
                     className="btn-gradient w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-white font-semibold">
-                    Book Your Audit Call
+                    Book Your Discovery Call
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                   </a>
                 </div>
@@ -204,7 +234,7 @@ export default function Operations() {
               <div className="card-dark rounded-2xl p-6">
                 <h4 className="text-white font-semibold mb-3 text-sm">What happens after the call?</h4>
                 <p className="text-slate-500 text-sm leading-relaxed">
-                  You receive a written roadmap and — if you want us to implement it — a clear fixed quote. Implementation pricing varies depending on what we find. We give you a realistic from-price during the call so there are no surprises.
+                  You receive a written roadmap and — if you want us to implement it — a clear fixed quote. Implementation pricing varies depending on what we find.
                 </p>
               </div>
             </div>
@@ -269,7 +299,7 @@ export default function Operations() {
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <p className="fade-in-up text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 mb-3">Book Now</p>
-            <h2 className="fade-in-up delay-100 text-4xl font-black text-white">Book your audit call.</h2>
+            <h2 className="fade-in-up delay-100 text-4xl font-black text-white">Book your discovery call.</h2>
             <p className="fade-in-up delay-200 text-lg text-slate-400 mt-4">
               Fill in a few details. We will confirm your booking and send a calendar invite within 48 hours.
             </p>
@@ -280,7 +310,7 @@ export default function Operations() {
               <div className="text-center py-12">
                 <div className="text-5xl mb-4">✓</div>
                 <h3 className="text-2xl font-bold text-white mb-2">Request received</h3>
-                <p className="text-slate-400">We will be in touch within 48 hours to arrange a time for your audit call.</p>
+                <p className="text-slate-400">We will be in touch within 48 hours to arrange a time for your discovery call.</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
@@ -322,7 +352,7 @@ export default function Operations() {
                 </div>
                 <button type="submit" disabled={sending}
                   className="btn-gradient w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl text-white font-semibold disabled:opacity-60">
-                  {sending ? 'Sending…' : 'Book My Audit Call — £250'}
+                  {sending ? 'Sending…' : 'Book My Discovery Call — £250'}
                   {!sending && <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>}
                 </button>
                 <p className="text-center text-xs text-slate-600">We confirm all bookings within 48 hours. Payment details shared on confirmation.</p>

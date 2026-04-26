@@ -40,12 +40,7 @@ export default function Footer() {
             <ul className="space-y-2">
               <li>
                 <Link to="/operations" className="text-slate-500 hover:text-white text-sm transition-colors">
-                  Book a Strategy Call
-                </Link>
-              </li>
-              <li>
-                <Link to="/digital-solutions" className="text-slate-500 hover:text-white text-sm transition-colors">
-                  Request a Quote
+                  Book a Discovery Call
                 </Link>
               </li>
               <li>

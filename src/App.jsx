@@ -6,6 +6,7 @@ import Home from './pages/Home'
 import Operations from './pages/Operations'
 import DigitalSolutions from './pages/DigitalSolutions'
 import Contact from './pages/Contact'
+import Privacy from './pages/Privacy'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -65,6 +66,7 @@ function AppContent() {
           <Route path="/operations" element={<Operations />} />
           <Route path="/digital-solutions" element={<DigitalSolutions />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/privacy" element={<Privacy />} />
         </Routes>
       </main>
       <Footer />

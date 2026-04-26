@@ -97,7 +97,7 @@ export default function Home() {
             <div className="fade-in-up delay-400 flex flex-wrap items-center justify-center gap-6 mt-14 text-sm text-slate-500">
               <span className="flex items-center gap-2">
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="#8A2BE2" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                Max 5 clients — bespoke by design
+                Limited availability — bespoke by design
               </span>
               <span className="hidden sm:block w-px h-4 bg-white/10" />
               <span className="flex items-center gap-2">
@@ -177,7 +177,7 @@ export default function Home() {
                   We embed into your business as an external Head of Operations — building the workflows, CRM systems, and automations that let you scale without hiring a full ops team.
                 </p>
                 <ul className="space-y-2 mb-8 flex-1">
-                  {['Workflow design & implementation', 'CRM setup & pipeline optimisation', 'Automation builds', 'Reporting dashboards', 'Process documentation (SOPs)'].map((item) => (
+                  {['Workflow design & implementation', 'CRM setup & pipeline optimisation', 'Automation builds', 'Reporting dashboards', 'Process documentation'].map((item) => (
                     <li key={item} className="flex items-center gap-2 text-sm text-slate-400">
                       <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="#8A2BE2" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
                       {item}
@@ -185,7 +185,7 @@ export default function Home() {
                   ))}
                 </ul>
                 <div className="flex items-center justify-between">
-                  <span className="text-slate-500 text-sm">From £2,000/month</span>
+                  <span className="text-slate-500 text-sm">Discovery call — £250</span>
                   <Link
                     to="/operations"
                     className="btn-gradient inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-white text-sm font-semibold"
@@ -220,7 +220,7 @@ export default function Home() {
                 ))}
               </ul>
               <div className="flex items-center justify-between">
-                <span className="text-slate-500 text-sm">From £1,000</span>
+                <span className="text-slate-500 text-sm">From £99/month</span>
                 <Link
                   to="/digital-solutions"
                   className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/15 text-white text-sm font-semibold hover:bg-white/5 transition-colors"
@@ -311,7 +311,7 @@ export default function Home() {
                 <span className="gradient-text block">that actually works.</span>
               </h2>
               <p className="fade-in-up delay-200 text-lg text-slate-400 max-w-xl mx-auto mb-10">
-                We take on a maximum of 5 clients at a time. If you are serious about fixing your operations, apply now.
+                We only work with a small number of clients at a time. If you are serious about fixing your operations, apply now.
               </p>
               <div className="fade-in-up delay-300 flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link

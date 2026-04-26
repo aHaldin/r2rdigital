@@ -84,7 +84,7 @@ export default function Contact() {
                     className="flex items-center justify-between p-4 rounded-2xl bg-[#12121f] border border-white/7 hover:border-white/15 transition-all group">
                     <div>
                       <p className="text-white font-semibold group-hover:gradient-text transition-colors">Operations Consulting</p>
-                      <p className="text-slate-500 text-sm">From £250 audit call</p>
+                      <p className="text-slate-500 text-sm">From £250 discovery call</p>
                     </div>
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-slate-600 group-hover:text-white transition-colors">
                       <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>

@@ -41,7 +41,7 @@ const packages = [
       'Delivered in 2–3 weeks',
     ],
     note: 'One-time payment · You own everything',
-    cta: 'Request a Quote',
+    cta: 'Get Started',
   },
   {
     id: 'growth',
@@ -62,7 +62,7 @@ const packages = [
       '30-day post-launch support',
     ],
     note: 'One-time payment · Includes 30 days support',
-    cta: 'Request a Quote',
+    cta: 'Get Started',
   },
   {
     id: 'scale',
@@ -83,7 +83,7 @@ const packages = [
       'Quarterly strategy review',
     ],
     note: 'Build fee + optional ongoing retainer',
-    cta: 'Request a Quote',
+    cta: 'Get Started',
   },
 ]
 
@@ -139,9 +139,9 @@ export default function DigitalSolutions() {
       {/* HERO */}
       <section className="relative pt-32 pb-24 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 right-1/3 w-[500px] h-[500px] rounded-full opacity-8"
+          <div className="absolute top-0 right-1/3 w-[500px] h-[500px] rounded-full opacity-[0.03]"
             style={{ background: 'radial-gradient(circle, #FF2D95 0%, transparent 70%)' }} />
-          <div className="absolute bottom-0 left-1/3 w-[400px] h-[400px] rounded-full opacity-6"
+          <div className="absolute bottom-0 left-1/3 w-[400px] h-[400px] rounded-full opacity-[0.03]"
             style={{ background: 'radial-gradient(circle, #8A2BE2 0%, transparent 70%)' }} />
           <div className="absolute inset-0 opacity-[0.03]"
             style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
@@ -251,7 +251,7 @@ export default function DigitalSolutions() {
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 mb-2">Works Even Better With</p>
               <h3 className="text-2xl font-bold text-white mb-2">Operations Consulting</h3>
               <p className="text-slate-400 text-sm max-w-lg">
-                Digital tools perform better when the operational systems behind them are built right. Start with an audit call to see how both services can work together.
+                Digital tools perform better when the operational systems behind them are built right. Start with an discovery call to see how both services can work together.
               </p>
             </div>
             <Link to="/operations"
